@@ -1,6 +1,5 @@
-from django.http import HttpResponse
-
 from django.shortcuts import render
+from django.views import generic
 
 from restaurant.models import Dish, DishType, Cook
 
@@ -19,3 +18,23 @@ def index(request):
         "num_cooks": num_cooks,
     }
     return render(request, "restaurant/index.html", context=context)
+
+
+class DishTypeListView(generic.ListView):
+    model = DishType
+
+
+class DishListView(generic.ListView):
+    model = Dish
+
+
+class CookListView(generic.ListView):
+    model = Cook
+
+
+class DishDetailView(generic.DetailView):
+    model = Dish
+
+
+class CookDetailView(generic.DetailView):
+    model = Cook

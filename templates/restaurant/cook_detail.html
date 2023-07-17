@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ cook.first_name }} {{ cook.last_name }}</h2>
+  {% if cook.years_of_experience == 1 %}
+    <p>Experience: {{ cook.years_of_experience }} year</p>
+  {% else %}
+    <p>Experience: {{ cook.years_of_experience }} years</p>
+  {% endif %}
+  <p>Favourite dishes:</p>
+  {% for dish in cook.dishes.all %}
+    <ul>
+      <li><a href={% url "restaurant:dish-detail" pk=dish.id %}>{{ dish.name }}</a></li>
+    </ul>
+  {% endfor %}
+
+{% endblock %}
