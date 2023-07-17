@@ -1,4 +1,13 @@
 <ul class="sidebar-nav">
+    {% if user.is_authenticated %}
+    <li class="list-group-item">User: <a href="{% url "restaurant:cook-detail" pk=user.id %}">{{ user.get_username }}</a></li>
+    <li class="list-group-item"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+  {% else %}
+    <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+  {% endif %}
+
+  <br>
+
     <li><a href="{% url "restaurant:index" %}">Home</a></li>
     <li><a href={% url "restaurant:dishtypes" %}>All dish types</a></li>
     <li><a href={% url "restaurant:dishes" %}>All dishes</a></li>
