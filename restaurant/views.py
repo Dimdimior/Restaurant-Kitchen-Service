@@ -26,10 +26,12 @@ class DishTypeListView(generic.ListView):
 
 class DishListView(generic.ListView):
     model = Dish
+    paginate_by = 10
 
 
 class CookListView(generic.ListView):
     model = Cook
+    paginate_by = 5
 
 
 class DishDetailView(generic.DetailView):
