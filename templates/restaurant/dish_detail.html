@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>{{ dish.name }}</h2>
+  <h2>{{ dish.name }}
+  <a href="{% url "restaurant:dish-update" pk=dish.id %}" class="btn btn-danger link-to-page">
+      Update
+    </a>
+
+    <a href="{% url 'restaurant:dish-delete' pk=dish.id %}" class="btn btn-secondary link-to-page">
+      Delete
+    </a>
+  </h2>
 
   <section>{{ dish.description }}</section>
   <br>
