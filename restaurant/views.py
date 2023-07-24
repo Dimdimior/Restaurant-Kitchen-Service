@@ -1,7 +1,6 @@
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 
 from restaurant.forms import CookForm, UpdateExperienceForm, DishForm, DishTypeForm
@@ -12,7 +11,6 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
-@login_required
 def index(request):
     num_dishes = Dish.objects.count()
     num_dish_types = DishType.objects.count()
@@ -46,6 +44,7 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
+
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
@@ -100,5 +99,18 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     success_url = reverse_lazy("restaurant:dishtypes")
+
+
+# def my_view(request):
+#     username = request.POST["username"]
+#     password = request.POST["password"]
+#     user = authenticate(request, username=username, password=password)
+#     if user is not None:
+#         login(request, user)
+#         return  redirect
+#         ...
+#     else:
+#         # Return an 'invalid login' error message.
+#         ...
 
 
