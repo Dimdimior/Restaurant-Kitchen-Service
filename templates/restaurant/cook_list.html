@@ -1,13 +1,20 @@
+{#{% extends "base-presentation.html" %}#}
+
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Cook List
-
-<a href="{% url "restaurant:cook-create" %}" class="btn btn-primary link-to-page">
+  <div class="row">
+    <div class="col-12">
+      <h1>Cook List
+        <a href="{% url "restaurant:cook-create" %}" class="btn btn-primary link-to-page">
       Create
-    </a>
-</h1>
-{% if cook_list %}
+        </a>
+      </h1>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-5">
+      {% if cook_list %}
   <ul>
     {% for cook in cook_list %}
       <li><a href={% url "restaurant:cook-detail" pk=cook.id %}>{{ cook.first_name}} {{ cook.last_name }} ({{ cook.username }})</a></li>
@@ -16,6 +23,7 @@
   {% else %}
       <p>There are no cooks</p>
 {% endif %}
-
-
+  </div>
+</div>
 {% endblock %}
+

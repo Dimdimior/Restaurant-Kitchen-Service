@@ -16,12 +16,10 @@
               </span>
             </button>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-              <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
-              {% if request.user.is_authenticated %}
-              <h6 style="margin-top: 5px">Hello, {{ user.username }}!</h6>
-                {% else %}
-                 <h6 style="margin-top: 5px">Hello, Guest!</h6>
-              {% endif %}
+              <ul class="navbar-nav navbar-nav-hover  ps-lg-5 w-100">
+                <h6 style="margin-top: 5px; padding-left: 20%" ><a href={% url "restaurant:cooks" %}>Cooks</a></h6>
+                <h6 style="margin-top: 5px ; padding-left: 20px"><a href={% url "restaurant:dishes" %}>Dishes</a></h6>
+                <h6 style="margin-top: 5px ; padding-left: 20px"><a href={% url "restaurant:dishtypes" %}>Types</a></h6>
                 <li class="nav-item ms-lg-auto">
                   <a class="nav-link nav-link-icon me-2" href="https://github.com/Dimdimior" target="_blank">
                     <i class="fa fa-github me-1"></i>
@@ -31,7 +29,7 @@
                 {% if request.user.is_authenticated %}
                 <li class="nav-item my-auto ms-3 ms-lg-0">
                   <a href={% url "logout" %}
-                     class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Logout</a>
+                         class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Logout as {{ user.username }}<a></a>
                 </li>
                   {% else %}
                   <li class="nav-item my-auto ms-3 ms-lg-0">
